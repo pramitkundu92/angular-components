@@ -1,0 +1,169 @@
+table.custom-grid {
+    border-spacing: 5px;
+    border-collapse: collapse;
+    margin-right: 15px;
+} 
+table.custom-grid tr th {
+	text-transform: capitalize;
+}
+table.custom-grid tr th, table.custom-grid tr td {
+    color: #444;
+    font-size: 11px;
+    text-align: left;
+    padding: 7px;
+}
+table.custom-grid tr.divider {
+    padding: 0;
+}
+table.custom-grid tr {
+    height: 14px;
+}
+table.custom-grid tr {
+    border-bottom: 0.5px solid rgba(0,0,0,0.22);
+}
+table.custom-grid .divider td {
+	padding: 0px;
+}
+table.custom-grid .filterbox {
+	border-radius: 5px;
+	border-style: groove;
+}
+.pagination span {
+    font-size: 11px;
+    color: #555;
+}
+table.custom-grid thead tr td input {
+    width: 60px;
+}
+table.custom-grid tbody tr:hover:not(.divider) {
+    background-color: #f9f9f9;
+}
+table.custom-grid th .md-button.md-icon-button {
+    border-radius: 50%;
+    height: 25px;
+    line-height: 24px;
+    margin: 0;
+    min-width: 0;
+    padding: 8px;
+    width: 35px;
+}
+.md-subheader {
+    font-size: 12px;
+}
+.md-subheader .md-subheader-inner  {
+    padding: 16px 0px;
+    background-color: white;
+}
+.pagination .md-button.md-icon-button {
+    margin: 0 0px;
+    height: 40px;
+    min-width: 0;
+    line-height: 24px;
+    padding: 8px 0 0 0;
+}
+table.custom-grid .clickable {
+    cursor: pointer;
+}
+md-menu-item {
+    padding: 0 20px;
+    min-height: 30px;
+    height: 25px;
+    min-height: 25px;
+}
+md-menu-item > * {
+    padding-left: 0;
+}
+md-menu-content {
+    padding: 10px 0;
+    min-width: 300px;
+}
+md-menu-item>.md-button {
+    text-align: left;
+    display: inline-block;
+    border-radius: 0;
+    margin: auto 0;
+    font-size: 14px;
+    text-transform: none;
+    font-weight: 400;
+    height: 50%;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+}
+table.custom-grid md-checkbox {
+	transform: scale(0.7);
+	vertical-align: top;
+	margin-bottom: 0px;
+}
+table.custom-grid .action-column {
+	width: 1px;
+}
+.pagination md-select {
+    display: flex;
+    margin: 0 0 7px;
+}
+.pagination md-select .md-select-value {
+	min-width: 30px;
+}
+.pagination md-select .md-select-value .md-select-icon {
+	margin: 0;
+    width: 13px;
+}
+.pagination .paging .selected-page {
+	margin: 5px;
+	font-weight: bold;
+	font-size: 12px;
+}
+table.custom-grid .hyperlink {
+	cursor: pointer;
+	margin-left: 0px;
+	color: #c4d600;
+	text-decoration: underline;
+}
+.pagination .paging .non-selected-page {
+	cursor: pointer;
+	margin: 5px;
+	text-decoration: underline;
+}
+.pagination .paging .navigation {
+	cursor: pointer;
+}
+.pagination .paging .navigation img {
+	vertical-align: -4px;
+}
+.pagination .page-size {
+	margin-top: 10px;
+}
+
+/* IE11 specific styles should go here */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+   md-menu-item .additional-column {
+   		padding-top: 16px;
+   }
+}
+
+@media (max-width: 600px) {
+    table td, table tr, table th {
+        display: block;
+    }
+	thead tr { 
+		display: none;
+	}
+    tbody tr.divider {
+        display: none;
+    }
+	tbody tr {   
+        border: 1px solid #ccc; 
+        min-height: 50%;
+    }
+    tbody td.exclude {
+        display: none;
+    }
+	tbody td:not(.exclude) { 
+	}
+	tbody td:not(.exclude):before { 
+        content: attr(data-title)":";
+        font-weight: bold;
+        float: left;
+	}
+}

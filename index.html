@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="testApp">
+	<head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<title>Demo of some Angular components</title>
+		<link rel="stylesheet" href="vendor/angular-material.min.css"/>
+        <link rel="stylesheet" href="vendor/material-icons.css"/>
+        
+        <link rel="stylesheet" href="grid/assets/css/grid.css"/>
+	    <link rel="stylesheet" href="tree/assets/css/tree.css"/>
+	    <link rel="stylesheet" href="datatable/assets/css/datatable.css"/>
+	</head>
+	<body ng-controller="AppCtrl">
+        <center><h3>Demo of Angular Components</h3></center>
+        
+        <div class="layout-row">
+            <md-card class="flex">
+                <md-card-header>Tree Structure</md-card-header>
+                <md-card-content>
+                    <angular-tree nodes="treeData" show-checkbox="true" leaves-selected="leaves" on-node-select="onNodeSelect"></angular-tree>
+                </md-card-content>
+            </md-card>
+            
+            <md-card class="flex-75">
+                <md-card-header>Grid</md-card-header>
+                <md-card-content>
+                    <angular-grid table-data="dataSet"></angular-grid>      
+                </md-card-content>
+            </md-card>
+        </div>
+        
+        <div class="layout-row">  
+            <md-card class="flex">
+                <md-card-header>Charts</md-card-header>
+                <md-card-content>
+                    <angular-charts data="chartData"></angular-charts>                
+                </md-card-content>
+            </md-card>
+            
+            <md-card class="flex-50">
+                <md-card-header>Nested Datatable</md-card-header>
+                <md-card-content>
+                    <angular-datatable table-data="datatableData" table-def="datatableColumns" 
+                                       first-column="'fieldA'" show-headers="true"></angular-datatable> 
+                </md-card-content>
+            </md-card>
+        </div>    
+           
+        
+        <script type="text/javascript" src="vendor/jquery.min.js"></script>  
+		<script type="text/javascript" src="vendor/angular.min.js"></script>        
+        <script type="text/javascript" src="vendor/angular-animate.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-aria.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-material.min.js"></script>
+        <script type="text/javascript" src="vendor/angular-messages.min.js"></script>
+        <script type="text/javascript" src="vendor/loader.js"></script>
+        
+        <!--importing components-->
+        <script type="text/javascript" src="charts/charts.js"></script>
+        <script type="text/javascript" src="datatable/datatable.js"></script>
+        <script type="text/javascript" src="grid/grid.js"></script>
+        <script type="text/javascript" src="tree/tree.js"></script>
+        <!--end of importing components-->        
+        
+        <script type="text/javascript" src="app/app.js"></script>
+	</body>
+</html>

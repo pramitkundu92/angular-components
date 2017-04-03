@@ -1,0 +1,62 @@
+.datatable .cell {
+    margin: 6px;
+}
+.datatable .header .cell {
+    font-weight: bold;
+    font-size: 11px;
+    text-align: left;
+    text-transform: capitalize;
+}
+.datatable .body .cell {
+    font-size: 11px;
+    text-align: left;
+}
+.datatable .first-cell {
+    text-align: left;
+}
+.datatable .row {
+	height: 32px;
+    border-bottom: 0.7px solid #c5c5c5;
+}
+.datatable .flex-30 {
+	flex: 1 1 43%;
+}
+.datatable .row:hover {
+	background-color: #f9f9f9;
+}
+.datatable .cell.first-cell {
+	margin: 0px 7px;
+}
+.datatable .child-row {
+	display: block;
+}
+.datatable .no-top-margin {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.datatable .cell {
+     /* white-space: -moz-pre-wrap !important;  Mozilla, since 1999
+     white-space: -pre-wrap;      Opera 4-6
+     white-space: -o-pre-wrap;    Opera 7
+     white-space: pre-wrap;       css-3
+     word-wrap: break-word;       Internet Explorer 5.5+
+     word-break: break-all; */
+     white-space: normal;
+     padding: 0;
+}
+.datatable .rotated {
+    transform: rotate(-90deg);
+}
+.datatable .expand-icon {
+    cursor: pointer;
+    transition: 0.5s;
+}
+.datatable img {
+    margin: 4px;
+}
+.datatable .first-cell-data {
+    margin: 7px 15px;
+}
+.datatable .bold {
+    font-weight: bold;
+}
