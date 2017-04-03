@@ -1,0 +1,23 @@
+<div ng-class="{'leaf-node': node.children.length==0}">
+    <div ng-if="!node.removed" class="node" ng-click="toggleSelected();onSelect({node: node})"> 
+        <md-button class="md-icon-button" ng-show="node.children.length>0 && node.showNodes" ng-click="::toggle()" aria-label="button">
+            <img src="webapp/app/common/tree/assets/images/collapse.png" width="16" height="16"/>
+            <md-tooltip md-direction="top">Collapse</md-tooltip>
+        </md-button>
+        <md-button class="md-icon-button" ng-show="node.children.length>0 && !node.showNodes" ng-click="::toggle()" aria-label="button">
+            <img src="webapp/app/common/tree/assets/images/expand.png" width="16" height="16"/>  
+            <md-tooltip md-direction="top">Expand</md-tooltip> 
+        </md-button>
+        <span ng-if="node.children.length>0">
+            <img src="webapp/app/common/tree/assets/images/folder.png" width="16" height="16"/>
+        </span>
+        <span ng-if="node.children.length==0">
+            <img src="webapp/app/common/tree/assets/images/file.png" width="16" height="16"/>
+        </span>
+        
+        <span class="no-outline" ng-class="{'selected-node': node.path == $root.selectedNode.path}">
+	        <md-checkbox ng-if="showCheckbox" aria-label="selectbox" ng-model="node.selected"></md-checkbox>          
+	        <span class="node-text flex">{{::getDisplayText(node.text)}}</span>
+	        <md-tooltip md-direction="top" ng-if="node.text.length>18">{{::node.text}}</md-tooltip> 
+        </span>
+    </div>

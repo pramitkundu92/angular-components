@@ -1,0 +1,108 @@
+<div class="flex" id="grid_{{::gridId}}">
+    <md-subheader ng-if="initData.length==0 || tableDef.length==0">
+        No Data loaded in grid.
+    </md-subheader>
+    <table class="custom-grid layout-fill" ng-if="initData.length>0 && tableDef.length>0">
+        <thead>
+            <tr class="headers">
+                <th class="action-column">
+                    <md-menu ng-if="addtlColumns.length>0">
+                         <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
+                            <img class="clickable" src="webapp/app/common/grid/assets/images/add_column.png" width="16" height="16"/>
+                            <md-tooltip md-direction="top">Add Columns</md-tooltip>
+                         </md-button>
+                         <md-menu-content ng-init="::setupColumns()">
+                             <md-menu-item ng-repeat="col in addtlColumns">
+                                 <md-checkbox aria-label="checkbox" class="flex-15" ng-model="col.included"></md-checkbox>
+                                 <span class="flex-85 additional-column">{{::col.text}}</span>
+                             </md-menu-item>
+                             <div class="layout-row">
+                                 <span class="flex-25"></span>
+                                 <md-button class="md-button md-primary flex-50" ng-click="::addedColumns()">Done</md-button>
+                                 <span class="flex-25"></span>
+                             </div>
+                         </md-menu-content>
+                    </md-menu>
+                    <span ng-click="selectRow($event,-1)" ng-if="gridOptions.allowRowSelect && addtlColumns.length==0">
+                		<md-checkbox aria-label="selectbox" ng-checked="config.allSelected"></md-checkbox>
+                	</span>
+                </th>
+                <th ng-repeat="column in tableDef" ng-if="column.included">
+                    {{::column.text}}
+                </th>
+                <th ng-if="actions.length>0" class="action-column">
+                	<md-menu class="flex-15">
+                		 <span class="clickable" aria-label="Open sample menu" ng-click="$mdOpenMenu($event)">
+                            Actions
+                         </span>
+                         <md-menu-content>
+                         	<md-menu-item ng-repeat="act in actions">
+                         		<span class="clickable" ng-click="handleAction($index,-1,$event)">{{::act.label}}</span>
+                         	</md-menu-item>
+                         </md-menu-content>
+                	</md-menu>
+                </th>
+            </tr>
+            <tr ng-if="gridOptions.filters">
+                <td class="action-column">
+                	<span ng-click="selectRow($event,-1)" ng-if="gridOptions.allowRowSelect">
+                		<md-checkbox aria-label="selectbox" ng-checked="config.allSelected"></md-checkbox>
+                	</span>
+                </td>
+                <td class="exclude" ng-repeat="column in tableDef" ng-if="column.included">
+                    <input class="filterbox" type="text" ng-model="::filterConfig[column.text]"/>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="entity in paginatedData" column-count="{{::tableDef.length*10}}px">
+                <td class="exclude">
+                	<span ng-click="selectRow($event,$index)" ng-if="gridOptions.allowRowSelect">
+                		<md-checkbox aria-label="selectbox" ng-checked="entity.selected"></md-checkbox>
+                	</span>
+                </td>
+                <td ng-repeat="column in tableDef" ng-if="column.included" data-title="{{column.text}}">
+                    <span ng-class="{'hyperlink': column.hyperlink}" ng-click="rowClicked(entity,column)">{{::getDisplayText(entity[column.text])}}</span>
+                    <md-tooltip md-direction="top" ng-if="entity[column.text].length>15">{{::entity[column.text]}}</md-tooltip>
+                </td>
+                <td ng-if="actions.length>0" class="action-column">
+                	<md-menu>
+                		 <md-button  class="md-icon-button" aria-label="Open sample menu" ng-click="$mdOpenMenu($event)">
+                            <img class="clickable" src="webapp/app/common/grid/assets/images/more.png" width="16" height="16"/>
+                            <md-tooltip md-direction="top">Actions</md-tooltip>
+                         </md-button>
+                         <md-menu-content>
+                         	<md-menu-item ng-repeat="act in actions">
+                         		<span class="clickable" ng-click="handleAction($index,$parent.$index,$event)">{{::act.label}}</span>
+                         	</md-menu-item>
+                         </md-menu-content>
+                	</md-menu>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pagination layout-row layout-align-center-center" ng-if="tableData.length>gridOptions.pagination.pageSizes[0]">
+    	<span class="flex-gt-sm-20 layout-row">
+    		<span class="page-size">Current Page Size</span>&nbsp;&nbsp;
+	    	<md-select ng-model="gridOptions.pagination.pageSize" aria-label="pagesize-selector">
+	    		<md-option ng-repeat="size in gridOptions.pagination.pageSizes" ng-value="size">{{::size}}</md-option>
+	    	</md-select>
+    	</span>
+    	<span class="flex-gt-sm-60"></span>
+    	<span class="flex-gt-sm-20 layout-row">
+    		<span ng-if="tableData.length>gridOptions.pagination.pageSize">Pages</span>&nbsp;&nbsp;
+	        <span class="paging" ng-if="tableData.length>gridOptions.pagination.pageSize">
+	        	<span ng-if="paging.arrowsRequired && paging.start>1" class="navigation" ng-click="::moveBack()">
+	        		<img src="webapp/app/common/grid/assets/images/prev_page.png" height="13" width="13"/>
+	        	</span>
+	        	<span ng-repeat="pageNo in pages" ng-if="pageNo>=paging.start && pageNo<=paging.end" ng-click="gridOptions.pagination.currentPage = pageNo"
+		        	  ng-class="{'selected-page': gridOptions.pagination.currentPage == pageNo, 'non-selected-page': gridOptions.pagination.currentPage != pageNo}">
+		        	{{::pageNo}}
+		       	</span>	
+		       	<span ng-if="paging.arrowsRequired && paging.end<paging.total" class="navigation" ng-click="::moveForward()"> 
+	        		<img src="webapp/app/common/grid/assets/images/next_page.png" height="13" width="13"/>
+	        	</span>
+        	</span>
+    	</span>
+    </div>
+</div>

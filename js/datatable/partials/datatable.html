@@ -1,0 +1,54 @@
+<div>
+	<md-subheader ng-if="tableData.length==0">
+		No Data loaded in datatable
+	</md-subheader>
+	<div class="datatable" ng-if="tableData.length>0">
+	    <div class="header" ng-if="showHeaders == 'true'">
+	        <div class="layout-row row flex">
+	            <div class="cell" ng-repeat="column in tableDef"
+	                 ng-class="{'flex-30': column == firstColumn, 'flex-20': (column != firstColumn && column.length>10), 'flex-10': (column != firstColumn && column.length<=7), 'flex-15': (column != firstColumn && column.length>7 && column.length<=10)}">
+	                {{::column}}
+	            </div>
+	        </div>
+	    </div>
+	    <div class="body">
+	        <div class="layout-row row" ng-repeat-start="row in tableData" ng-init="row.expanded = true">
+	            <div class="cell" ng-repeat="column in tableDef" 
+	                 ng-class="{'flex-30': column == firstColumn, 'flex-20': (column != firstColumn && column.length>10), 'flex-10': (column != firstColumn && column.length<=7), 'flex-15': (column != firstColumn && column.length>7 && column.length<=10), 'first-cell': column == firstColumn}">                
+	                <span ng-if="column != firstColumn">
+	                    <span>{{::getDisplayText(row[column])}}</span>
+	                    <md-tooltip md-direction="top" ng-if="row[column].length>10">{{::row[column]}}</md-tooltip>
+	                </span>
+	                <span ng-if="column == firstColumn" class="layout-row first-cell">
+	                    <span class="flex-{{row.level*15}}"></span>
+	                    <span ng-if="row.children.length==0" class="flex-15"></span>
+	                    <span class="flex-15" ng-if="row.children.length>0">
+	                        <img src="webapp/app/common/datatable/assets/images/expand.png" ng-click="::toggleExpandedFlag(row)"
+	                             height="18" width="18" ng-class="{'rotated': row.expanded}" class="expand-icon"/>
+	                    </span>
+	                    <span class="flex-10 layout-row">
+	                        <span>
+	                            <img src="webapp/app/common/datatable/assets/images/database.png" height="18" width="18"/>
+	                        </span>    
+	                    </span>
+	                    <span class="flex-{{60-row.level*10}} first-cell-data">
+	                        <span>{{::getDisplayText(row[column])}}</span>
+	                    	<md-tooltip md-direction="top" ng-if="row[column].length>10">{{::row[column]}}</md-tooltip>
+	                    </span>
+	                </span>
+	            </div>
+	        </div>
+	        <div class="child-row" ng-if="row.children.length>0 && row.expanded">
+	            <dpdx-datatable table-data="row.children" table-def="tableDef" first-column="firstColumn"
+	                            show-headers="false"></dpdx-datatable>
+	        </div>
+	        <div class="layout-row row bold" ng-repeat-end ng-if="displayTotal != undefined">
+	            <div class="cell" ng-repeat="column in tableDef"
+	                 ng-class="{'flex-30': column == firstColumn, 'flex-20': (column != firstColumn && column.length>10), 'flex-10': (column != firstColumn && column.length<=7), 'flex-15': (column != firstColumn && column.length>7 && column.length<=10)}">
+	                <span ng-if="column == firstColumn">Total</center></span>
+	                <span ng-if="column == displayTotal">{{::row[column]}}</span>
+	            </div>    
+	        </div> 
+	    </div>
+	</div>
+</div>

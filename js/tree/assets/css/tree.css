@@ -1,0 +1,76 @@
+.tree md-list-item .md-list-item-inner::before, md-list-item::before {
+    content: "";
+    display: inline-block;
+    min-height: 0px;
+    visibility: hidden;
+}
+.tree md-list-item.md-no-proxy, md-list-item .md-no-style {
+    flex: 1 1 auto;
+    padding: 0 0px;
+    position: relative;
+}
+.tree .md-button.md-icon-button {
+    border-radius: 50%;
+    height: 22px;
+    line-height: 22px;
+    margin: 0px;
+    min-width: 0;
+    padding: 0px;
+    width: 20px;
+}
+.tree .child {
+    margin-left: 10px;
+    animation: fadein 0.7s ease-in-out;
+}
+.tree .node {
+	height: 17px;
+	outline: none;
+}
+@keyframes fadein{
+    0% {opacity: 0}
+    25% {opacity: 0.25}
+    50% {opacity: 0.5}
+    75% {opacity: 0.75}
+    100% {opacity: 1}
+}
+.tree .leaf-node {
+    margin-left: 23px;
+}
+.tree .node-text {
+    font-size: 9px;
+    text-transform: capitalize;
+    vertical-align: super;
+    cursor: pointer;
+    color: #444;
+    display: inline-block;
+    word-break: break-all;
+    -ms-word-break: break-all;
+    white-space: normal;
+}
+.tree md-icon {
+    font-size: 16px;
+}
+.tree md-list-item, md-list-item .md-list-item-inner  {
+    min-height: 15px;
+}
+.tree md-list {
+    padding: 0px;
+}
+.tree .md-button {
+    min-height: 15px;
+}
+.tree md-checkbox {
+	transform: scale(0.6);
+    vertical-align: top;
+    margin-bottom: 0;
+}
+.tree .no-outline {
+	outline: none;
+}
+.tree .no-outline md-checkbox {
+	pointer-events: none;
+}
+.tree .selected-node {
+    font-style: italic;
+    font-weight: bold;
+}
